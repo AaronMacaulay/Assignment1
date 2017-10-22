@@ -674,24 +674,24 @@ GeometryGenerator::MeshData GeometryGenerator::CreateCone(float radius, float he
 	}
 
 	float dHeight = height / 20.0f;
-	float currHeight = dHeight;
+	float curHeight = dHeight;
 	float dRadius = radius / 20.0f;
-	float currRadius = radius - dRadius;
+	float curRadius = radius - dRadius;
 	//Creates the ring for the cone
 	for (uint32 i = 0; i < stackCount; i++)
 	{
 		angle = 0.0f;
 		for (uint32 j = 0; j < sliceCount; j++)
 		{
-			meshData.Vertices.push_back(Vertex(currRadius * cosf(angle), currHeight, currRadius * sinf(angle), cosf(angle), 0.0f, sinf(angle), -sinf(angle), 0.0f, cosf(angle), 1.0f, 1.0f));
+			meshData.Vertices.push_back(Vertex(curRadius * cosf(angle), curHeight, curRadius * sinf(angle), cosf(angle), 0.0f, sinf(angle), -sinf(angle), 0.0f, cosf(angle), 1.0f, 1.0f));
 			angle += dTheta;
 		}
 		if (!(i == stackCount - 1) || (i == stackCount - 1 && i == 19))
-			currHeight += dHeight;
-		currRadius -= dRadius;
+			curHeight += dHeight;
+		curRadius -= dRadius;
 	}
 	//Tip of top center
-	meshData.Vertices.push_back(Vertex(0.0f, currHeight, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f));
+	meshData.Vertices.push_back(Vertex(0.0f, curHeight, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f));
 
 	//Bottom Face
 	for (uint32 i = 0; i < sliceCount; i++)
@@ -873,21 +873,21 @@ GeometryGenerator::MeshData GeometryGenerator::CreatePyramid(float width, float 
 	meshData.Vertices.push_back(Vertex(-width / 2, 0.0f, width / 2, cosf(3 * XM_PI / 4), 0.0f, sinf(3 * XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
 
 	float dWidth = width / 20.0f;
-	float currWidth = width - dWidth;
+	float curWidth = width - dWidth;
 	float dHeight = height / 20.0f;
-	float currHeight = dHeight;
+	float curHeight = dHeight;
 	//Initialization for the vertices of the sides of the pyramid
 	for (uint32 i = 0; i < stackCount; i++)
 	{
-		meshData.Vertices.push_back(Vertex(currWidth / 2, currHeight, currWidth / 2, cosf(XM_PI / 4), 0.0f, sinf(XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
-		meshData.Vertices.push_back(Vertex(currWidth / 2, currHeight, -currWidth / 2, cosf(-XM_PI / 4), 0.0f, sinf(-XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
-		meshData.Vertices.push_back(Vertex(-currWidth / 2, currHeight, -currWidth / 2, cosf(-3 * XM_PI / 4), 0.0f, sinf(-3 * XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
-		meshData.Vertices.push_back(Vertex(-currWidth / 2, currHeight, currWidth / 2, cosf(3 * XM_PI / 4), 0.0f, sinf(3 * XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
-		currWidth -= dWidth;
+		meshData.Vertices.push_back(Vertex(curWidth / 2, curHeight, curWidth / 2, cosf(XM_PI / 4), 0.0f, sinf(XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+		meshData.Vertices.push_back(Vertex(curWidth / 2, curHeight, -curWidth / 2, cosf(-XM_PI / 4), 0.0f, sinf(-XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+		meshData.Vertices.push_back(Vertex(-curWidth / 2, curHeight, -curWidth / 2, cosf(-3 * XM_PI / 4), 0.0f, sinf(-3 * XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+		meshData.Vertices.push_back(Vertex(-curWidth / 2, curHeight, curWidth / 2, cosf(3 * XM_PI / 4), 0.0f, sinf(3 * XM_PI / 4), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+		curWidth -= dWidth;
 		if (!(i == stackCount - 1) || (i == stackCount - 1 && i == 19))
-			currHeight += dHeight;
+			curHeight += dHeight;
 	}
-	meshData.Vertices.push_back(Vertex(0.0f, currHeight, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
+	meshData.Vertices.push_back(Vertex(0.0f, curHeight, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f));
 
 
 	//Bottom Face
